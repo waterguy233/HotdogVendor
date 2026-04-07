@@ -1,1 +1,60 @@
 
+import time
+
+# read file 
+def read_file():
+    data = []
+    try:
+        with open("Hotdogs.txt", "r") as file:
+            for line in file:
+                row = line.strip().split(",")
+                if len(row) == 7:
+                    data.append(row)
+    except:
+        print("Error reading file")
+    return data
+
+
+
+# dislpay data  
+def display(data):
+    for row in data:
+        print(row)
+
+
+
+# linear search unsorted
+
+def linear_search(data, target):
+    results = []
+    for row in data:
+        if row[1].lower() == target.lower():
+            results.append(row)
+    return results
+
+ #linear search sorted
+
+def linear_search_sorted(data, target):
+    results = []
+    for row in data:
+        if row[1].lower() == target.lower():
+            results.append(row)
+        elif row[1].lower() > target.lower():
+            break
+    return results
+
+
+# bubble sort 
+
+def bubble_sort(data):
+    n = len(data)
+    for i in range(n):
+        for j in range(0, n - 1):
+            if data[j][1] > data[j + 1][1]:
+                data[j], data[j + 1] = data[j + 1], data[j]
+    return data
+
+
+
+
+
