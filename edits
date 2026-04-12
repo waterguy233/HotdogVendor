@@ -1,29 +1,39 @@
 
 import time
 
-# read file 
+
+#read data
+
 def read_file():
-    data = []
-    try:
-        with open("Hotdogs.txt", "r") as file:
-            for line in file:
-                row = line.strip().split(",")
-                if len(row) == 7:
-                    data.append(row)
-    except:
-        print("Error reading file")
+    data = [
+        ['DD_056','Dolly Dogs','202313','40','140','10.5','1'],
+        ['DD_056','Dolly Dogs','202314','40','170','15.0','2'],
+        ['DD_056','Dolly Dogs','202315','60','100','14.5','1'],
+        ['DD_056','Dolly Dogs','202316','90','130','15.0','2'],
+        ['DD_056','Dolly Dogs','202317','40','170','25.5','4'],
+        ['DD_056','Dolly Dogs','202318','70','130','20.0','1'],
+        ['DD_056','Dolly Dogs','202319','50','180','15.5','4'],
+        ['DD_056','Dolly Dogs','202320','90','130','10.0','2'],
+        ['KK_745','Korner Kart','202313','60','130','10.5','2'],
+        ['KK_745','Korner Kart','202314','30','130','10.0','4'],
+        ['KK_745','Korner Kart','202315','80','150','25.5','2'],
+        ['KK_745','Korner Kart','202316','30','140','25.0','3'],
+        ['KK_745','Korner Kart','202317','80','160','20.5','4'],
+        ['KK_745','Korner Kart','202318','90','170','25.0','1'],
+        ['KK_745','Korner Kart','202319','80','150','20.5','3'],
+        ['KK_745','Korner Kart','202320','90','180','25.0','4']
+    ]
     return data
 
 
+#data
 
-# dislpay data  
 def display(data):
     for row in data:
         print(row)
 
 
-
-# linear search unsorted
+#linear search
 
 def linear_search(data, target):
     results = []
@@ -32,8 +42,9 @@ def linear_search(data, target):
             results.append(row)
     return results
 
- #linear search sorted
 
+
+#linear search sorted
 def linear_search_sorted(data, target):
     results = []
     for row in data:
@@ -44,8 +55,8 @@ def linear_search_sorted(data, target):
     return results
 
 
-# bubble sort 
 
+#bubble sort
 def bubble_sort(data):
     n = len(data)
     for i in range(n):
@@ -53,6 +64,96 @@ def bubble_sort(data):
             if data[j][1] > data[j + 1][1]:
                 data[j], data[j + 1] = data[j + 1], data[j]
     return data
+
+
+
+#quick sort
+
+def quick_sort(data):
+    if len(data) <= 1:
+        return data
+
+    pivot = data[0]
+    left = []
+    right = []
+
+    for row in data[1:]:
+        if row[1] <= pivot[1]:
+            left.append(row)
+        else:
+            right.append(row)
+
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+
+# binary search 
+ 
+def binary_search(data, target):
+    low = 0
+    high = len(data) - 1
+    results = []
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if data[mid][1].lower() == target.lower():
+            i = mid
+            while i >= 0 and data[i][1].lower() == target.lower():
+                results.append(data[i])
+                i -= 1
+
+            i = mid + 1
+            while i < len(data) and data[i][1].lower() == target.lower():
+                results.append(data[i])
+                i += 1
+
+            return results
+
+        elif data[mid][1].lower() < target.lower():
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return []
+
+
+#time function 
+
+def time_function(func, data, target=None):
+    start = time.time()
+
+    if target:
+        result = func(data, target)
+    else:
+        result = func(data)
+
+    end = time.time()
+    return end - start, result
+
+#analysis
+ 
+def analyse(data):
+    if len(data) == 0:
+        print("No data loaded.")
+        return {}
+
+    vendor_totals = {}
+    ketchup_min = float("inf")
+    ketchup_vendor = ""
+
+    total_vegan = 0
+    total_meat = 0
+
+    for row in data:
+        try:
+            name = row[1]
+            vegan = int(row[3])
+            meat = int(row[4])
+            ketchup = float(row[6])
+        except:
+            continue
+
+
 
 
 
