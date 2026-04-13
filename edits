@@ -153,6 +153,33 @@ def analyse(data):
         except:
             continue
 
+  total = vegan + meat
+        total_vegan += vegan
+        total_meat += meat
+
+        if name not in vendor_totals:
+            vendor_totals[name] = 0
+        vendor_totals[name] += total
+
+        if ketchup < ketchup_min:
+            ketchup_min = ketchup
+            ketchup_vendor = name
+
+    if len(vendor_totals) == 0:
+        print("No valid data.")
+        return {}
+
+    best_vendor = max(vendor_totals, key=vendor_totals.get)
+
+    return {
+        "Best Vendor": best_vendor,
+        "Vegan Total": total_vegan,
+        "Meat Total": total_meat,
+        "Least Ketchup Vendor": ketchup_vendor
+    }
+
+
+
 
 
 
