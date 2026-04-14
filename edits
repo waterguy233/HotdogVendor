@@ -33,7 +33,7 @@ def display(data):
         print(row)
 
 
-#linear search
+#linear search unsorted
 
 def linear_search(data, target):
     results = []
