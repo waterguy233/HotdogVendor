@@ -178,6 +178,40 @@ def analyse(data):
         "Least Ketchup Vendor": ketchup_vendor
     }
 
+def save_results(results):
+    with open("results.txt", "w") as file:
+        for key, value in results.items():
+            file.write(f"{key}: {value}\n")
+
+
+def main():
+    data = read_file()
+    print("Rows loaded:", len(data))
+
+    while True:
+        print("\n1.Display")
+        print("2.Linear Search")
+        print("3.Sort (Bubble)")
+        print("4.Sort (Quick)")
+        print("5.Binary Search")
+        print("6.Compare Search Time")
+        print("7.Compare Sort Time")
+        print("8.Analysis")
+        print("9.Exit")
+
+        choice = input("Choice: ")
+
+        if choice == "1":
+            display(data)
+
+        elif choice == "2":
+            name = input("Vendor name: ")
+            print(linear_search(data, name))
+
+        elif choice == "3":
+            data = bubble_sort(data)
+            print("Sorted (Bubble)")
+
 
 
 
