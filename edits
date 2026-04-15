@@ -213,7 +213,23 @@ def main():
             print("Sorted (Bubble)")
 
 
+        elif choice == "4":
+            data = quick_sort(data)
+            print("Sorted (Quick)")
 
+        elif choice == "5":
+            name = input("Vendor name: ")
+            print(binary_search(data, name))
+
+        elif choice == "6":
+            name = input("Vendor name: ")
+            t1, _ = time_function(linear_search, data, name)
+            t2, _ = time_function(binary_search, data, name)
+
+
+            print("Linear:", t1)
+            print("Binary:", t2)
+      
 
 
 
