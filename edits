@@ -230,6 +230,13 @@ def main():
             print("Linear:", t1)
             print("Binary:", t2)
       
+     elif choice == "7":
+            t1, _ = time_function(bubble_sort, data.copy())
+            t2, _ = time_function(quick_sort, data.copy())
+
+            print("Bubble:", t1)
+            print("Quick:", t2)
+
 
 
 
