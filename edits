@@ -237,6 +237,25 @@ def main():
             print("Bubble:", t1)
             print("Quick:", t2)
 
+   elif choice == "8":
+            results = analyse(data)
+            print(results)
+            save_results(results)
+            print("Saved to results.txt")
+
+        elif choice == "9":
+            break
+
+        else:
+            print("Invalid choice")
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
 
 
 
