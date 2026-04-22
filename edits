@@ -153,7 +153,7 @@ def analyse(data):
         except:
             continue
 
-  total = vegan + meat
+        total = vegan + meat
         total_vegan += vegan
         total_meat += meat
 
@@ -230,14 +230,14 @@ def main():
             print("Linear:", t1)
             print("Binary:", t2)
       
-       elif choice == "7":
+        elif choice == "7":
             t1, _ = time_function(bubble_sort, data.copy())
             t2, _ = time_function(quick_sort, data.copy())
 
             print("Bubble:", t1)
             print("Quick:", t2)
 
-      elif choice == "8":
+        elif choice == "8":
             results = analyse(data)
             print(results)
             save_results(results)
