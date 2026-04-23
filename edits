@@ -208,8 +208,8 @@ def save_results(results):
             file.write(f"{key}: {value}\n")
 
 
-UNIT TESTS 🔥 CHANGE
-# =========================
+#unit test
+
 def test_linear_search():
     data = read_file()
     result = linear_search(data, "Dolly Dogs")
