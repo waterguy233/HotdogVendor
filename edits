@@ -194,11 +194,13 @@ def analyse(data):
     best_vendor = max(vendor_totals, key=vendor_totals.get)
 
     return {
-        "Best Vendor": best_vendor,
+        "Best Vendor (Total Sales)": best_vendor,  #better lable
         "Vegan Total": total_vegan,
         "Meat Total": total_meat,
         "Least Ketchup Vendor": ketchup_vendor
     }
+
+#results
 
 def save_results(results):
     with open("results.txt", "w") as file:
@@ -206,6 +208,24 @@ def save_results(results):
             file.write(f"{key}: {value}\n")
 
 
+UNIT TESTS 🔥 CHANGE
+# =========================
+def test_linear_search():
+    data = read_file()
+    result = linear_search(data, "Dolly Dogs")
+    assert len(result) > 0
+    print("Linear search test is correct")
+
+def test_bubble_sort():
+    data = read_file()
+    sorted_data = bubble_sort(data.copy())
+    assert sorted_data[0][1] <= sorted_data[-1][1]
+    print("Bubble sort test is correct")
+
+
+
+
+#main menu
 def main():
     data = read_file()
     print("Rows loaded:", len(data))
@@ -227,7 +247,7 @@ def main():
             display(data)
 
         elif choice == "2":
-            name = input("Vendor name: ")
+            name = input("Vendor name: ").strip()
             print(linear_search(data, name))
 
         elif choice == "3":
@@ -240,8 +260,9 @@ def main():
             print("Sorted (Quick)")
 
         elif choice == "5":
-            name = input("Vendor name: ")
-            print(binary_search(data, name))
+            name = input("Vendor name: ").strip()
+            sorted_data = quick_sort(data.copy())
+            print(binary_search(sorted_data, name))
 
         elif choice == "6":
             name = input("Vendor name: ")
