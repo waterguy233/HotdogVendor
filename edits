@@ -25,7 +25,9 @@ def read_file():
         ['KK_745','Korner Kart','202319','80','150','20.5','3'],
         ['KK_745','Korner Kart','202320','90','180','25.0','4'],
 
-         # Lipe Lasagna
+       #new datasets
+
+       # Lipe hotdogs
         ['LH_999','Lipe Hotdogs','202321','50','120','12.0','2'],
         ['LH_999','Lipe Hotdogs','202322','70','140','15.0','3'],
         ['LH_999','Lipe Hotdogs','202323','80','160','18.0','2'],
