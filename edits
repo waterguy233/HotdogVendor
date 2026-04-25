@@ -110,9 +110,9 @@ def quick_sort(data):
     return quick_sort(left) + [pivot] + quick_sort(right)
 
 
-# binary search 
- def binary_search(data, target):
- low, high = 0, len(data) - 1
+# binary search
+def binary_search(data, target):
+    low, high = 0, len(data) - 1
     results = []
     while low <= high:
         mid = (low + high) // 2
@@ -139,7 +139,7 @@ def quick_sort(data):
 #time function 
 
 def time_function(func, data, target=None):
-    start = time.(perf_counter)#better accuracy
+    start = time.perf_counter()#better accuracy
 
     if target:
         result = func(data, target)
