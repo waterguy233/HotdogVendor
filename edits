@@ -139,7 +139,7 @@ def quick_sort(data):
 #time function 
 
 def time_function(func, data, target=None):
-    start = time.time()
+    start = time.(perf_counter)#better accuracy
 
     if target:
         result = func(data, target)
@@ -264,12 +264,12 @@ def main():
         elif choice == "6":
             name = input("Vendor name: ")
             t1, _ = time_function(linear_search, data, name)
-            t2, _ = time_function(binary_search, data, name)
-
-
-            print("Linear:", t1)
-            print("Binary:", t2)
-      
+            # Binary search needs sorted data to work correctly
+            sorted_copy = quick_sort(data.copy())
+            t2, _ = time_function(binary_search, sorted_copy, name)
+            print(f"Linear: {t1:.6f}s | Binary: {t2:.6f}s")
+           
+         
         elif choice == "7":
             t1, _ = time_function(bubble_sort, data.copy())
             t2, _ = time_function(quick_sort, data.copy())
