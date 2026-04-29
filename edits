@@ -258,10 +258,9 @@ def main():
 
         elif choice == "2":
             name = input("Vendor name: ").strip()
-            print(linear_search(data, name))
            
             # validation check 
-             if not is_valid_vendor(data, name):
+            if not is_valid_vendor(data, name):
                 print("Invalid vendor name.")
             else:
                 print("Results:", linear_search(data, name))
@@ -279,7 +278,8 @@ def main():
 
         elif choice == "5":
             name = input("Vendor name: ").strip()
-                if not is_valid_vendor(data, name):
+
+            if not is_valid_vendor(data, name):
                     print("Invalid vendor name try again.")
             else:
                 sorted_data = quick_sort(data.copy())
@@ -287,7 +287,7 @@ def main():
 
 
         elif choice == "6":
-        name = input("Enter vendor name: ").strip()
+            name = input("Enter vendor name: ").strip()
 
             if not is_valid_vendor(data, name):
                 print("Invalid vendor name.")
