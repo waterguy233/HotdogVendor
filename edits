@@ -28,9 +28,9 @@ def read_file():
        #new datasets
 
        # Lipe's dogs
-        ['LD_999','Lipe Hotdogs','202321','50','120','12.0','2'],#additional vendror
-        ['LD_999','Lipe Hotdogs','202322','70','140','15.0','3'],
-        ['LD_999','Lipe Hotdogs','202323','80','160','18.0','2'],
+        ['LH_999','Lipe Hotdogs','202321','50','120','12.0','2'],#additional vendror
+        ['LH_999','Lipe Hotdogs','202322','70','140','15.0','3'],
+        ['LH_999','Lipe Hotdogs','202323','80','160','18.0','2'],
 
         #  Mega Meats
         ['MM_321','Mega Munches','202321','20','200','30.0','5'],#additional vendror
