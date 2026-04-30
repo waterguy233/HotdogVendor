@@ -57,7 +57,7 @@ def display(data):
         print(row)
 
 
-# VALIDATION
+# Validation
 
 # Checks if a vendor exists in the dataset  # ADDED
 def is_valid_vendor(data, name):
@@ -285,28 +285,44 @@ def main():
                 sorted_data = quick_sort(data.copy())
                 print("Results:", binary_search(sorted_data, name))
 
+       elif choice == "6":
+           name = input("Enter vendor name: ").strip()
 
-        elif choice == "6":
-            name = input("Enter vendor name: ").strip()
+    # validation check
+          if not is_valid_vendor(data, name):
+             print("Invalid vendor name.")
+            continue
 
-            if not is_valid_vendor(data, name):
-                print("Invalid vendor name.")
-                continue
+    # unsorted linear search
+          t1, _ = time_function(linear_search, data, name)
 
-            t1, _ = time_function(linear_search, data, name)
+    # sorted data for fair comparison
+          sorted_copy = quick_sort(data.copy())
 
-            sorted_copy = quick_sort(data.copy())
-            t2, _ = time_function(binary_search, sorted_copy, name)
+    # sorted linear search
+          t2, _ = time_function(linear_search_sorted, sorted_copy, name)
 
-            print(f"Linear: {t1:.6f}s | Binary: {t2:.6f}s")
+    # binary search
+          t3, _ = time_function(binary_search, sorted_copy, name)
 
-         
-        elif choice == "7":
-            t1, _ = time_function(bubble_sort, data.copy())
-            t2, _ = time_function(quick_sort, data.copy())
+          print(f"Linear (unsorted): {t1:.6f}s")
+          print(f"Linear (sorted): {t2:.6f}s")
+          print(f"Binary: {t3:.6f}s") 
 
-            print("Bubble:", t1)
-            print("Quick:", t2)
+
+       elif choice == "7":
+          t1, _ = time_function(bubble_sort, data.copy())
+          t2, _ = time_function(quick_sort, data.copy())
+
+           print(f"Bubble: {t1:.6f}s")
+           print(f"Quick: {t2:.6f}s")
+
+    # compare results
+          if t1 < t2:
+              print("Bubble sort is faster.")
+         else:
+              print("Quick sort is faster.")
+       
 
         elif choice == "8":
             results = analyse(data)
