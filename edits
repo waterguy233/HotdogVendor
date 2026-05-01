@@ -59,7 +59,7 @@ def display(data):
 
 # Validation
 
-# Checks if a vendor exists in the dataset  # ADDED
+# Checks if a vendor exists in the dataset 
 def is_valid_vendor(data, name):
     for row in data:
         if row[1].lower() == name.lower():
