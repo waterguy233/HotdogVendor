@@ -1,0 +1,340 @@
+import time
+
+
+#read data
+
+def read_file():
+    data = [
+        #Doggy dogs
+        ['DD_056','Dolly Dogs','202313','40','140','10.5','1'], #original data set
+        ['DD_056','Dolly Dogs','202314','40','170','15.0','2'],
+        ['DD_056','Dolly Dogs','202315','60','100','14.5','1'],
+        ['DD_056','Dolly Dogs','202316','90','130','15.0','2'],
+        ['DD_056','Dolly Dogs','202317','40','170','25.5','4'],
+        ['DD_056','Dolly Dogs','202318','70','130','20.0','1'],
+        ['DD_056','Dolly Dogs','202319','50','180','15.5','4'],
+        ['DD_056','Dolly Dogs','202320','90','130','10.0','2'],
+        #Korner karts
+        ['KK_745','Korner Kart','202313','60','130','10.5','2'],#original data set
+        ['KK_745','Korner Kart','202314','30','130','10.0','4'],
+        ['KK_745','Korner Kart','202315','80','150','25.5','2'],
+        ['KK_745','Korner Kart','202316','30','140','25.0','3'],
+        ['KK_745','Korner Kart','202317','80','160','20.5','4'],
+        ['KK_745','Korner Kart','202318','90','170','25.0','1'],
+        ['KK_745','Korner Kart','202319','80','150','20.5','3'],
+        ['KK_745','Korner Kart','202320','90','180','25.0','4'],
+
+       #new datasets
+
+       # Lipe's dogs
+        ['LH_999','Lipe Hotdogs','202321','50','120','12.0','2'],#additional vendror
+        ['LH_999','Lipe Hotdogs','202322','70','140','15.0','3'],
+        ['LH_999','Lipe Hotdogs','202323','80','160','18.0','2'],
+
+        #  Mega Meats
+        ['MM_321','Mega Munches','202321','20','200','30.0','5'],#additional vendror
+        ['MM_321','Mega Munches','202322','25','220','35.0','6'],
+        ['MM_321','Mega Munches','202323','30','210','33.0','5'],  
+
+        #  Vegan Dogs
+        ['VV_654','Vegan Vibes','202321','150','10','8.0','1'],#vegan vendor
+        ['VV_654','Vegan Vibes','202322','170','5','7.5','1'],
+        ['VV_654','Vegan Vibes','202323','160','8','7.0','1'],
+
+        # Street Bites
+        ['SB_888','Street Bites','202321','60','90','12.0','2'],#vegan vendor
+        ['SB_888','Street Bites','202322','70','100','13.5','3'],
+        ['SB_888','Street Bites','202323','80','110','14.0','2']
+    ]
+    return data
+
+
+#data
+
+def display(data):
+    for row in data:
+        print(row)
+
+
+# Validation
+
+# Checks if a vendor exists in the dataset  # ADDED
+def is_valid_vendor(data, name):
+    for row in data:
+        if row[1].lower() == name.lower():
+            return True
+    return False
+
+
+
+
+
+#linear search unsorted
+
+def linear_search(data, target):
+    results = []
+    for row in data:
+        if row[1].lower() == target.lower():
+            results.append(row)
+    return results
+
+
+
+#linear search sorted
+def linear_search_sorted(data, target):
+    results = []
+    for row in data:
+        if row[1].lower() == target.lower():
+            results.append(row)
+        elif row[1].lower() > target.lower():
+            break
+    return results
+
+
+
+#bubble sort
+def bubble_sort(data):
+    n = len(data)
+    for i in range(n):
+        for j in range(0, n - 1):
+            if data[j][1] > data[j + 1][1]:
+                data[j], data[j + 1] = data[j + 1], data[j]
+    return data
+
+
+
+#quick sort
+
+def quick_sort(data):
+    if len(data) <= 1:
+        return data
+
+    pivot = data[0]
+    left = []
+    right = []
+
+    for row in data[1:]:
+        if row[1] <= pivot[1]:
+            left.append(row)
+        else:
+            right.append(row)
+
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+
+# binary search
+def binary_search(data, target):
+    low, high = 0, len(data) - 1
+    results = []
+    while low <= high:
+        mid = (low + high) // 2
+        mid_val = data[mid][1].lower()
+        if mid_val == target.lower():
+            # Find all matching neighbors
+            i = mid
+            while i >= 0 and data[i][1].lower() == target.lower():
+                results.append(data[i])
+                i -= 1
+            i = mid + 1
+            while i < len(data) and data[i][1].lower() == target.lower():
+                results.append(data[i])
+                i += 1
+            return results
+        elif mid_val < target.lower():
+            low = mid + 1
+        else:
+            high = mid - 1
+    return []
+
+
+
+#time function 
+
+def time_function(func, data, target=None):
+    start = time.perf_counter()#better accuracy
+
+    if target:
+        result = func(data, target)
+    else:
+        result = func(data)
+
+    end = time.perf_counter()
+    return end - start, result
+
+#analysis
+ 
+def analyse(data):
+    if len(data) == 0:
+        print("No data loaded.")
+        return {}
+
+    vendor_totals = {}
+    ketchup_min = float("inf")
+    ketchup_vendor = ""
+
+    total_vegan = 0
+    total_meat = 0
+
+    for row in data:
+        try:
+            name = row[1]
+            vegan = int(row[3])
+            meat = int(row[4])
+            ketchup = float(row[6])
+        except:
+            continue
+
+        total = vegan + meat
+        total_vegan += vegan
+        total_meat += meat
+
+        if name not in vendor_totals:
+            vendor_totals[name] = 0
+        vendor_totals[name] += total
+
+        if ketchup < ketchup_min:
+            ketchup_min = ketchup
+            ketchup_vendor = name
+
+    if len(vendor_totals) == 0:
+        print("No valid data.")
+        return {}
+
+    best_vendor = max(vendor_totals, key=vendor_totals.get)
+
+    return {
+        "Best Vendor (Total Sales)": best_vendor,  #better lable
+        "Vegan Total": total_vegan,
+        "Meat Total": total_meat,
+        "Least Ketchup Vendor": ketchup_vendor
+    }
+
+#results
+
+def save_results(results):
+    with open("results.txt", "w") as file:
+        for key, value in results.items():
+            file.write(f"{key}: {value}\n")
+
+
+#unit test
+
+def test_linear_search(): #Tests linear search function
+    data = read_file()
+    result = linear_search(data, "Dolly Dogs")
+    assert len(result) > 0
+    print("Linear search test is correct")
+
+def test_bubble_sort():
+    data = read_file()
+    sorted_data = bubble_sort(data.copy())
+    assert sorted_data[0][1] <= sorted_data[-1][1]
+    print("Bubble sort test is correct")
+
+
+
+
+#main menu
+def main():
+    data = read_file()
+    print("Rows loaded:", len(data))
+
+    while True:
+        print("\n1.Display")
+        print("2.Linear Search")
+        print("3.Sort (Bubble)")
+        print("4.Sort (Quick)")
+        print("5.Binary Search")
+        print("6.Compare Search Time")
+        print("7.Compare Sort Time")
+        print("8.Analysis")
+        print("9.Exit")
+
+        choice = input("Choice: ")
+
+        if choice == "1":
+            display(data)
+
+        elif choice == "2":
+            name = input("Vendor name: ").strip()
+           
+            # validation check 
+            if not is_valid_vendor(data, name):
+                print("Invalid vendor name.")
+            else:
+                print("Results:", linear_search(data, name))
+
+        elif choice == "3":
+            data = bubble_sort(data)
+            print("bubble sort is a success")
+  
+
+        elif choice == "4":
+            data = quick_sort(data)
+            print("Quick sort completed ")  
+
+
+
+        elif choice == "5":
+            name = input("Vendor name: ").strip()
+
+            if not is_valid_vendor(data, name):
+                    print("Invalid vendor name try again.")
+            else:
+                sorted_data = quick_sort(data.copy())
+                print("Results:", binary_search(sorted_data, name))
+
+        elif choice == "6":
+           name = input("Enter vendor name: ").strip()
+
+    # validation check
+           if not is_valid_vendor(data, name):
+              print("Invalid vendor name.")
+              continue
+
+    # unsorted linear search
+           t1, _ = time_function(linear_search, data, name)
+
+    # sorted data for fair comparison
+           sorted_copy = quick_sort(data.copy())
+
+    # sorted linear search
+           t2, _ = time_function(linear_search_sorted, sorted_copy, name)
+
+    # binary search
+           t3, _ = time_function(binary_search, sorted_copy, name)
+
+           print(f"Linear (unsorted): {t1:.6f}s")
+           print(f"Linear (sorted): {t2:.6f}s")
+           print(f"Binary: {t3:.6f}s") 
+
+
+        elif choice == "7":
+            t1, _ = time_function(bubble_sort, data.copy())
+            t2, _ = time_function(quick_sort, data.copy())
+
+            print(f"Bubble: {t1:.6f}s")
+            print(f"Quick: {t2:.6f}s")
+
+    # compare results
+            if t1 < t2:
+              print("Bubble sort is faster.")
+            else:
+              print("Quick sort is faster.")
+       
+
+        elif choice == "8":
+            results = analyse(data)
+            print(results)
+            save_results(results)
+            print(" results are now complete")
+
+        elif choice == "9":
+            break
+
+        else:
+            print("Wrong option")
+
+
+if __name__ == "__main__":
+    main()
