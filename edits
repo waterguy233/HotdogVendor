@@ -308,13 +308,13 @@ def main():
            print(f"Sorted Linear: {t2:.6f}s")
            print(f"Binary Search: {t3:.6f}s")
 
-        elif choice == "7":
-            t1, _ = time_function(bubble_sort, data.copy())
-            t2, _ = time_function(quick_sort, data.copy())
+      elif choice == "7":
+          t1, _ = time_function(bubble_sort, data.copy())
+          t2, _ = time_function(quick_sort, data.copy())
 
-            print("\n=== SORTING TEST RESULTS ===")
-            print(f"Bubble Sort: {t1:.6f}s")
-            print(f"Quick Sort: {t2:.6f}s")
+          print("\n=== SORTING TEST RESULTS ===")
+          print(f"Bubble Sort: {t1:.6f}s")
+          print(f"Quick Sort: {t2:.6f}s")
            
 
     # compare results
