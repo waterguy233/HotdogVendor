@@ -5,7 +5,7 @@ import time
 
 def read_file():
     data = [
-        #Doggy dogs
+        #Dolly dogs
         ['DD_056','Dolly Dogs','202313','40','140','10.5','1'], #original data set
         ['DD_056','Dolly Dogs','202314','40','170','15.0','2'],
         ['DD_056','Dolly Dogs','202315','60','100','14.5','1'],
@@ -14,7 +14,7 @@ def read_file():
         ['DD_056','Dolly Dogs','202318','70','130','20.0','1'],
         ['DD_056','Dolly Dogs','202319','50','180','15.5','4'],
         ['DD_056','Dolly Dogs','202320','90','130','10.0','2'],
-        #Korner karts
+        #Korner kart
         ['KK_745','Korner Kart','202313','60','130','10.5','2'],#original data set
         ['KK_745','Korner Kart','202314','30','130','10.0','4'],
         ['KK_745','Korner Kart','202315','80','150','25.5','2'],
