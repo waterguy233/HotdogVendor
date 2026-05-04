@@ -58,7 +58,7 @@ def display(data):
 
 # Validation
 
-# Checks if a vendor exists in the dataset  
+# Checks if a vendor exists in the dataset 
 def is_valid_vendor(data, name):
     for row in data:
         if row[1].lower() == name.lower():
@@ -262,16 +262,16 @@ def main():
             if not is_valid_vendor(data, name):
                 print("Invalid vendor name.")
             else:
-                print("Results:", linear_search(data, name))
+                print(linear_search(data, name))
 
         elif choice == "3":
             data = bubble_sort(data)
-            print("bubble sort is a success")
+            print("bubble sort has been used on the data")
   
 
         elif choice == "4":
             data = quick_sort(data)
-            print("Quick sort completed ")  
+            print("Quick sort has been used and is completed ")  
 
 
 
@@ -279,62 +279,75 @@ def main():
             name = input("Vendor name: ").strip()
 
             if not is_valid_vendor(data, name):
-                    print("Invalid vendor name try again.")
+                    print("Invalid vendor name ")
             else:
                 sorted_data = quick_sort(data.copy())
-                print("Results:", binary_search(sorted_data, name))
+                result = binary_search(sorted_data, name)
+
+                if result:  # CHANGE
+                    print("\nSearch successful:")
+                    for r in result:
+                        print(r)
+                else:
+                    print("Vendor not found.")
 
         elif choice == "6":
-           name = input("Enter vendor name: ").strip()
+            name = input("Enter vendor: ").strip()
 
-    # validation check
-           if not is_valid_vendor(data, name):
-              print("Invalid vendor name.")
-              continue
+            if not is_valid_vendor(data, name):  
+                print("Invalid vendor name.")
+                continue
 
-    # unsorted linear search
-           t1, _ = time_function(linear_search, data, name)
+            t1, _ = time_function(linear_search, data, name)
+            sorted_copy = quick_sort(data.copy())
+            t2, _ = time_function(linear_search_sorted, sorted_copy, name)
+            t3, _ = time_function(binary_search, sorted_copy, name)
 
-    # sorted data for fair comparison
-           sorted_copy = quick_sort(data.copy())
-
-    # sorted linear search
-           t2, _ = time_function(linear_search_sorted, sorted_copy, name)
-
-    # binary search
-           t3, _ = time_function(binary_search, sorted_copy, name)
-
-           print(f"Linear (unsorted): {t1:.6f}s")
-           print(f"Linear (sorted): {t2:.6f}s")
-           print(f"Binary: {t3:.6f}s") 
-
+            print("\n=== SEARCH TEST RESULTS ===") 
+            print(f"Unsorted Linear: {t1:.6f}s")
+            print(f"Sorted Linear: {t2:.6f}s")
+            print(f"Binary Search: {t3:.6f}s")
 
         elif choice == "7":
             t1, _ = time_function(bubble_sort, data.copy())
             t2, _ = time_function(quick_sort, data.copy())
 
-            print(f"Bubble: {t1:.6f}s")
-            print(f"Quick: {t2:.6f}s")
-
-    # compare results
-            if t1 < t2:
-              print("Bubble sort is faster.")
-            else:
-              print("Quick sort is faster.")
-       
-
+            print("\n=== SORTING TEST RESULTS ===")
+            print(f"Bubble Sort: {t1:.6f}s")
+            print(f"Quick Sort: {t2:.6f}s")
+           
         elif choice == "8":
             results = analyse(data)
-            print(results)
+
+            print("\n=== DATA ANALYSIS ===")
+            print(f"Top Vendor: {results['Best Vendor (Total Sales)']}")
+            print(f"Vegan Total: {results['Vegan Total']}")
+            print(f"Meat Total: {results['Meat Total']}")
+            print(f"Least Ketchup Vendor: {results['Least Ketchup Vendor']}")
+
             save_results(results)
-            print(" results are now complete")
+            print("Analysis saved to file.")  
 
         elif choice == "9":
+            print("Program ended.")
             break
 
         else:
-            print("Wrong option")
+            print("Wrong option selected.")  
+
+
+
 
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
