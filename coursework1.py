@@ -26,17 +26,17 @@ def read_file():
 
        #new datasets
 
-       # Lipe dogs
+       # Lipe hotdogs
         ['LD_999','Lipe Hotdogs','202321','50','120','12.0','2'], #additional vendror
         ['LD_999','Lipe Hotdogs','202322','70','140','15.0','3'],
         ['LD_999','Lipe Hotdogs','202323','80','160','18.0','2'],
 
-        #  Mega Meats
+        #  Mega Munches
         ['MM_321','Mega Munches','202321','20','200','30.0','5'], #additional vendror
         ['MM_321','Mega Munches','202322','25','220','35.0','6'],
         ['MM_321','Mega Munches','202323','30','210','33.0','5'],  
 
-        #  Vegan Dogs
+        #  Vegan Vibes
         ['VV_654','Vegan Vibes','202321','150','10','8.0','1'], #vegan vendor
         ['VV_654','Vegan Vibes','202322','170','5','7.5','1'],
         ['VV_654','Vegan Vibes','202323','160','8','7.0','1'],
