@@ -291,22 +291,23 @@ def main():
                         print(r)
                 else:
                     print("Vendor not found.")
-         elif choice == "6":
-             name = input("Enter vendor: ").strip()
 
-             if not is_valid_vendor(data, name):  
+        elif choice == "6":
+            name = input("Enter vendor: ").strip()
+
+            if not is_valid_vendor(data, name):  
                 print("Invalid vendor name.")
                 continue
 
-             t1, _ = time_function(linear_search, data, name)
-             sorted_copy = quick_sort(data.copy())
-             t2, _ = time_function(linear_search_sorted, sorted_copy, name)
-             t3, _ = time_function(binary_search, sorted_copy, name)
+            t1, _ = time_function(linear_search, data, name)
+            sorted_copy = quick_sort(data.copy())
+            t2, _ = time_function(linear_search_sorted, sorted_copy, name)
+            t3, _ = time_function(binary_search, sorted_copy, name)
 
-             print("\n=== SEARCH TEST RESULTS ===") 
-             print(f"Unsorted Linear: {t1:.6f}s")
-             print(f"Sorted Linear: {t2:.6f}s")
-             print(f"Binary Search: {t3:.6f}s")
+            print("\n=== SEARCH TEST RESULTS ===") 
+            print(f"Unsorted Linear: {t1:.6f}s")
+            print(f"Sorted Linear: {t2:.6f}s")
+            print(f"Binary Search: {t3:.6f}s")
 
        elif choice == "7":
            t1, _ = time_function(bubble_sort, data.copy())
@@ -319,21 +320,21 @@ def main():
        elif choice == "8":
            results = analyse(data)
 
-           print("\n=== DATA ANALYSIS ===")  # CHANGE
+           print("\n=== DATA ANALYSIS ===")
            print(f"Top Vendor: {results['Best Vendor (Total Sales)']}")
            print(f"Vegan Total: {results['Vegan Total']}")
            print(f"Meat Total: {results['Meat Total']}")
            print(f"Least Ketchup Vendor: {results['Least Ketchup Vendor']}")
 
            save_results(results)
-           print("Analysis saved to file.")  # CHANGE
+           print("Analysis saved to file.")  
 
         elif choice == "9":
             print("Program ended.")
             break
 
         else:
-            print("Wrong option selected.")  # CHANGE
+            print("Wrong option selected.")  
 
 
 
