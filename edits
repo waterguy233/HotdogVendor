@@ -291,50 +291,52 @@ def main():
                         print(r)
                 else:
                     print("Vendor not found.")
-       elif choice == "6":
-           name = input("Enter vendor: ").strip()
+         elif choice == "6":
+             name = input("Enter vendor: ").strip()
 
-           if not is_valid_vendor(data, name):  
+             if not is_valid_vendor(data, name):  
                 print("Invalid vendor name.")
                 continue
 
-           t1, _ = time_function(linear_search, data, name)
-           sorted_copy = quick_sort(data.copy())
-           t2, _ = time_function(linear_search_sorted, sorted_copy, name)
-           t3, _ = time_function(binary_search, sorted_copy, name)
+             t1, _ = time_function(linear_search, data, name)
+             sorted_copy = quick_sort(data.copy())
+             t2, _ = time_function(linear_search_sorted, sorted_copy, name)
+             t3, _ = time_function(binary_search, sorted_copy, name)
 
-           print("\n=== SEARCH TEST RESULTS ===") 
-           print(f"Unsorted Linear: {t1:.6f}s")
-           print(f"Sorted Linear: {t2:.6f}s")
-           print(f"Binary Search: {t3:.6f}s")
+             print("\n=== SEARCH TEST RESULTS ===") 
+             print(f"Unsorted Linear: {t1:.6f}s")
+             print(f"Sorted Linear: {t2:.6f}s")
+             print(f"Binary Search: {t3:.6f}s")
 
-      elif choice == "7":
-          t1, _ = time_function(bubble_sort, data.copy())
-          t2, _ = time_function(quick_sort, data.copy())
+       elif choice == "7":
+           t1, _ = time_function(bubble_sort, data.copy())
+           t2, _ = time_function(quick_sort, data.copy())
 
-          print("\n=== SORTING TEST RESULTS ===")
-          print(f"Bubble Sort: {t1:.6f}s")
-          print(f"Quick Sort: {t2:.6f}s")
+           print("\n=== SORTING TEST RESULTS ===")
+           print(f"Bubble Sort: {t1:.6f}s")
+           print(f"Quick Sort: {t2:.6f}s")
            
+       elif choice == "8":
+           results = analyse(data)
 
-    # compare results
-          if t1 < t2:
-              print("Bubble sort is faster.")
-         else:
-              print("Quick sort is faster.")
-       
+           print("\n=== DATA ANALYSIS ===")  # CHANGE
+           print(f"Top Vendor: {results['Best Vendor (Total Sales)']}")
+           print(f"Vegan Total: {results['Vegan Total']}")
+           print(f"Meat Total: {results['Meat Total']}")
+           print(f"Least Ketchup Vendor: {results['Least Ketchup Vendor']}")
 
-        elif choice == "8":
-            results = analyse(data)
-            print(results)
-            save_results(results)
-            print(" results are now complete")
+           save_results(results)
+           print("Analysis saved to file.")  # CHANGE
 
         elif choice == "9":
+            print("Program ended.")
             break
 
         else:
-            print("Wrong option")
+            print("Wrong option selected.")  # CHANGE
+
+
+
 
 
 if __name__ == "__main__":
