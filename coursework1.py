@@ -263,10 +263,16 @@ def main():
                 print("Invalid vendor name.")
             else:
                 print(linear_search(data, name))
+            
 
         elif choice == "3":
             data = bubble_sort(data)
             print("bubble sort has been used on the data")
+            print("Vendors are now sorted alphabetically (A-Z):\n")
+    
+            for row in data:
+                print(row[1]) # this shows the vendor names in order 
+  
   
 
         elif choice == "4":
