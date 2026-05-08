@@ -280,12 +280,12 @@ def main():
 
             end = time.perf_counter()
 
-            print("Quick sort has been used and completed.")
+            print("Quick sort completed successfully.")
             print(f"Quick sort time: {end - start:.6f}s")
-            print("Vendors are now sorted alphabetically (A-Z):\n")
+            print("Sorted vendor records:\n")
 
             for row in data:
-                print(row[1]) 
+                print(row) 
 
             
 
