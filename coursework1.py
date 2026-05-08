@@ -290,7 +290,7 @@ def main():
                 sorted_data = quick_sort(data.copy())
                 result = binary_search(sorted_data, name)
 
-                if result:  # CHANGE
+                if result: prints the result of a valid name
                     print("\nSearch successful:")
                     for r in result:
                         print(r)
