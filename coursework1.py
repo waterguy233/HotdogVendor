@@ -1,3 +1,4 @@
+
 import time
 
 
@@ -27,22 +28,22 @@ def read_file():
        #new datasets
 
        # Lipe hotdogs
-        ['LD_999','Lipe Hotdogs','202321','50','120','12.0','2'], #additional vendror
-        ['LD_999','Lipe Hotdogs','202322','70','140','15.0','3'],
-        ['LD_999','Lipe Hotdogs','202323','80','160','18.0','2'],
+        ['LH_999','Lipe Hotdogs','202321','50','120','12.0','2'],#additional vendror
+        ['LH_999','Lipe Hotdogs','202322','70','140','15.0','3'],
+        ['LH_999','Lipe Hotdogs','202323','80','160','18.0','2'],
 
         #  Mega Munches
-        ['MM_321','Mega Munches','202321','20','200','30.0','5'], #additional vendror
+        ['MM_321','Mega Munches','202321','20','200','30.0','5'],#additional vendror
         ['MM_321','Mega Munches','202322','25','220','35.0','6'],
         ['MM_321','Mega Munches','202323','30','210','33.0','5'],  
 
         #  Vegan Vibes
-        ['VV_654','Vegan Vibes','202321','150','10','8.0','1'], #vegan vendor
+        ['VV_654','Vegan Vibes','202321','150','10','8.0','1'],#vegan vendor
         ['VV_654','Vegan Vibes','202322','170','5','7.5','1'],
         ['VV_654','Vegan Vibes','202323','160','8','7.0','1'],
 
         # Street Bites
-        ['SB_888','Street Bites','202321','60','90','12.0','2'], #vegan vendor
+        ['SB_888','Street Bites','202321','60','90','12.0','2'],#vegan vendor
         ['SB_888','Street Bites','202322','70','100','13.5','3'],
         ['SB_888','Street Bites','202323','80','110','14.0','2'],
     ]
@@ -245,7 +246,7 @@ def main():
         print("3.Sort (Bubble)")
         print("4.Sort (Quick)")
         print("5.Binary Search")
-        print("6.Compare Search Time and sort time ")
+        print("6.Compare Search Time and Sort Time")
         print("7.Analysis")
         print("8.Exit")
 
@@ -262,7 +263,6 @@ def main():
                 print("Invalid vendor name.")
             else:
                 print(linear_search(data, name))
-            
 
         elif choice == "3":
             data = bubble_sort(data)
@@ -270,13 +270,24 @@ def main():
             print("Vendors are now sorted alphabetically (A-Z):\n")
     
             for row in data:
-                print(row[1]) # this shows the vendor names in order 
-  
+                print(row[1])  # this shows the vendor names in order 
   
 
         elif choice == "4":
+            start = time.perf_counter()
+
             data = quick_sort(data)
-            print("Quick sort has been used and is completed ")  
+
+            end = time.perf_counter()
+
+            print("Quick sort has been used and completed.")
+            print(f"Quick sort time: {end - start:.6f}s")
+            print("Vendors are now sorted alphabetically (A-Z):\n")
+
+            for row in data:
+                print(row[1]) 
+
+            
 
 
 
@@ -290,21 +301,22 @@ def main():
                 result = binary_search(sorted_data, name)
 
                 if result:
-                   print("\nSearch successful:")
-                   for r in result:
+                    print("\nSearch successful:")
+                    for r in result:
                         print(r)
                 else:
                     print("Vendor not found.")
 
         elif choice == "6":
             name = input("Enter vendor: ").strip()
-                 #unsorted linear search timing 
-            t1,result1  = time_function(linear_search, data, name)
+
+                #unsorted linear search timing 
+            t1, result1 = time_function(linear_search, data, name)
                #sorted data
             sorted_copy = quick_sort(data.copy())
 
             # sorted linear timing
-            t2, result2  = time_function(linear_search_sorted, sorted_copy, name)
+            t2,result2= time_function(linear_search_sorted, sorted_copy, name)
 
              # binary search timing
             t3,result3 = time_function(binary_search, sorted_copy, name)
@@ -323,7 +335,6 @@ def main():
             print(f"Bubble Sort: {t1:.6f}s")
             print(f"Quick Sort: {t2:.6f}s")
            
-
 
    
            
@@ -352,6 +363,21 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
