@@ -246,10 +246,9 @@ def main():
         print("3.Sort (Bubble)")
         print("4.Sort (Quick)")
         print("5.Binary Search")
-        print("6.Compare Search Time")
-        print("7.Compare Sort Time")
-        print("8.Analysis")
-        print("9.Exit")
+        print("6.Compare Search Time and Sort Time")
+        print("7.Analysis")
+        print("8.Exit")
 
         choice = input("Choice: ")
 
@@ -275,8 +274,20 @@ def main():
   
 
         elif choice == "4":
+            start = time.perf_counter()
+
             data = quick_sort(data)
-            print("Quick sort has been used and is completed ")  
+
+            end = time.perf_counter()
+
+            print("Quick sort has been used and completed.")
+            print(f"Quick sort time: {end - start:.6f}s")
+            print("Vendors are now sorted alphabetically (A-Z):\n")
+
+            for row in data:
+                print(row[1]) 
+
+            
 
 
 
@@ -299,29 +310,35 @@ def main():
         elif choice == "6":
             name = input("Enter vendor: ").strip()
 
-            if not is_valid_vendor(data, name):  
-                print("Invalid vendor name.")
-                continue
-
-            t1, _ = time_function(linear_search, data, name)
+                #unsorted linear search timing 
+            t1, result1 = time_function(linear_search, data, name)
+               #sorted data
             sorted_copy = quick_sort(data.copy())
-            t2, _ = time_function(linear_search_sorted, sorted_copy, name)
-            t3, _ = time_function(binary_search, sorted_copy, name)
+
+            # sorted linear timing
+            t2,result2= time_function(linear_search_sorted, sorted_copy, name)
+
+             # binary search timing
+            t3,result3 = time_function(binary_search, sorted_copy, name)
 
             print("\n=== SEARCH TEST RESULTS ===") 
             print(f"Unsorted Linear: {t1:.6f}s")
             print(f"Sorted Linear: {t2:.6f}s")
             print(f"Binary Search: {t3:.6f}s")
 
-        elif choice == "7":
-            t1, _ = time_function(bubble_sort, data.copy())
-            t2, _ = time_function(quick_sort, data.copy())
+            # validation message after timings
+            if not result1:
+                 print("\nVendor was not found in the dataset.") 
+             
 
             print("\n=== SORTING TEST RESULTS ===")
             print(f"Bubble Sort: {t1:.6f}s")
             print(f"Quick Sort: {t2:.6f}s")
            
-        elif choice == "8":
+
+   
+           
+        elif choice == "7":
             results = analyse(data)
 
             print("\n=== DATA ANALYSIS ===")
@@ -333,7 +350,7 @@ def main():
             save_results(results)
             print("Analysis saved to file.")  
 
-        elif choice == "9":
+        elif choice == "8":
             print("Program ended.")
             break
 
