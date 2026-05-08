@@ -154,13 +154,17 @@ def binary_search(data, target):
 def time_function(func, data, target=None):
     start = time.perf_counter()#better accuracy
 
-    if target:
+     # if target exists use search function
+    if target is not None:
         result = func(data, target)
+
+    # otherwise use sort function
     else:
         result = func(data)
 
     end = time.perf_counter()
-    return end - start, result
+
+    return end - start, result 
 
 #analysis
  
