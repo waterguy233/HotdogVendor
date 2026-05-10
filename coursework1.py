@@ -1,3 +1,4 @@
+
 import time
 
 
@@ -8,12 +9,11 @@ def read_file():
     with open("hotdogs.txt", "r") as file:
         for line in file:
             row = line.strip().split(",")
-            data.append(row)
+            if len(row) >= 7:  # skip incomplete rows
+                 data.append(row)
 
     print("Data loaded from file successfully.")
     return data
-
-
 
 #data
 
@@ -117,11 +117,9 @@ def binary_search(data, target):
 #time function 
 
 def time_function(func, data, target=None):
-    
     start = time.perf_counter()#better accuracy
 
-    
-    # if target exists use search function
+     # if target exists use search function
     if target is not None:
         result = func(data, target)
 
@@ -131,8 +129,8 @@ def time_function(func, data, target=None):
 
     end = time.perf_counter()
 
-    return end - start, result
-  
+    return end - start, result 
+
 #analysis
  
 def analyse(data):
@@ -256,9 +254,7 @@ def main():
             print("Sorted vendor records:\n")
 
             for row in data:
-                print(row)
-            
-
+                print(row) 
 
             
 
@@ -283,6 +279,9 @@ def main():
         elif choice == "6":
             name = input("Enter vendor: ").strip()
 
+            if not is_valid_vendor(data, name):
+               print("Invalid vendor name.")
+
                 #unsorted linear search timing 
             t1, result1 = time_function(linear_search, data, name)
                #sorted data
@@ -299,10 +298,9 @@ def main():
             print(f"Sorted Linear: {t2:.6f}s")
             print(f"Binary Search: {t3:.6f}s")
 
-            # validation message after timings
-            if not result1:
-                 print("\nVendor was not found in the dataset.") 
-             
+            ts1, _ = time_function(bubble_sort, data.copy())
+            ts2, _ = time_function(quick_sort, data.copy())
+
 
             print("\n=== SORTING TEST RESULTS ===")
             print(f"Bubble Sort: {t1:.6f}s")
@@ -335,29 +333,6 @@ def main():
 
 
 if __name__ == "__main__":
+    test_linear_search()
+    test_bubble_sort()
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
