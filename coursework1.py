@@ -1,53 +1,18 @@
-
 import time
 
 
-#read data
-
+#read data (reads from file )
 def read_file():
-    data = [
-        #Dolly dogs
-        ['DD_056','Dolly Dogs','202313','40','140','10.5','1'], #original data set
-        ['DD_056','Dolly Dogs','202314','40','170','15.0','2'],
-        ['DD_056','Dolly Dogs','202315','60','100','14.5','1'],
-        ['DD_056','Dolly Dogs','202316','90','130','15.0','2'],
-        ['DD_056','Dolly Dogs','202317','40','170','25.5','4'],
-        ['DD_056','Dolly Dogs','202318','70','130','20.0','1'],
-        ['DD_056','Dolly Dogs','202319','50','180','15.5','4'],
-        ['DD_056','Dolly Dogs','202320','90','130','10.0','2'],
-        #Korner kart
-        ['KK_745','Korner Kart','202313','60','130','10.5','2'],#original data set
-        ['KK_745','Korner Kart','202314','30','130','10.0','4'],
-        ['KK_745','Korner Kart','202315','80','150','25.5','2'],
-        ['KK_745','Korner Kart','202316','30','140','25.0','3'],
-        ['KK_745','Korner Kart','202317','80','160','20.5','4'],
-        ['KK_745','Korner Kart','202318','90','170','25.0','1'],
-        ['KK_745','Korner Kart','202319','80','150','20.5','3'],
-        ['KK_745','Korner Kart','202320','90','180','25.0','4'],
+    data = []
 
-       #new datasets
+    with open("hotdogs.txt", "r") as file:
+        for line in file:
+            row = line.strip().split(",")
+            data.append(row)
 
-       # Lipe hotdogs
-        ['LH_999','Lipe Hotdogs','202321','50','120','12.0','2'],#additional vendror
-        ['LH_999','Lipe Hotdogs','202322','70','140','15.0','3'],
-        ['LH_999','Lipe Hotdogs','202323','80','160','18.0','2'],
-
-        #  Mega Munches
-        ['MM_321','Mega Munches','202321','20','200','30.0','5'],#additional vendror
-        ['MM_321','Mega Munches','202322','25','220','35.0','6'],
-        ['MM_321','Mega Munches','202323','30','210','33.0','5'],  
-
-        #  Vegan Vibes
-        ['VV_654','Vegan Vibes','202321','150','10','8.0','1'],#vegan vendor
-        ['VV_654','Vegan Vibes','202322','170','5','7.5','1'],
-        ['VV_654','Vegan Vibes','202323','160','8','7.0','1'],
-
-        # Street Bites
-        ['SB_888','Street Bites','202321','60','90','12.0','2'],#vegan vendor
-        ['SB_888','Street Bites','202322','70','100','13.5','3'],
-        ['SB_888','Street Bites','202323','80','110','14.0','2'],
-    ]
+    print("Data loaded from file successfully.")
     return data
+
 
 
 #data
