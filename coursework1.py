@@ -9,7 +9,7 @@ def read_file():
     with open("hotdogs.txt", "r") as file:
         for line in file:
             row = line.strip().split(",")
-            if len(row) >= 7:  # skip incomplete rows
+            if len(row) == 7:  # deems incomplete rows as invalid
                  data.append(row)
 
     print("Data loaded from file successfully.")
