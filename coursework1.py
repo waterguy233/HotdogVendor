@@ -314,7 +314,7 @@ def main():
             print(f"Sorted Linear: {t2:.6f}s")
             print(f"Binary Search: {t3:.6f}s")
 
-              # validation AFTER timings
+              # validation after timings
             if not is_valid_vendor(data, name):
                print("Vendor not found.")
             else:
