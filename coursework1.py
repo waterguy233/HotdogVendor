@@ -9,7 +9,7 @@ def read_file():
     with open("hotdogs.txt", "r") as file:
         for line in file:
             row = line.strip().split(",")
-            if len(row) == 7:  # deems incomplete rows as invalid
+            if len(row) == 7:  # skip incomplete rows
                  data.append(row)
 
     print("Data loaded from file successfully.")
@@ -30,9 +30,6 @@ def is_valid_vendor(data, name):
         if row[1].lower() == name.lower():
             return True
     return False
-
-
-
 
 
 #linear search unsorted
@@ -112,6 +109,25 @@ def binary_search(data, target):
             high = mid - 1
     return []
 
+sample_data = [
+    ['DD_056', 'Dolly Dogs',   '202313', '40', '140', '10.5', '1'],
+    ['KK_745', 'Korner Kart',  '202313', '60', '130', '10.5', '2'],
+    ['VV_654', 'Vegan Vibes',  '202321', '150', '10',  '8.0', '1'],
+
+]
+     # linear_search tests
+assert linear_search(sample_data, 'Dolly Dogs')[0][0] == 'DD_056'
+print('Test 1 has been complted ,valid vendor has been found.')
+assert linear_search(sample_data, 'Ron Dogs') == []
+print('Test 2 has been completed invalid vendor retuns to empty list. ')
+
+# bubble_sort tests
+sorted_data = bubble_sort([row[:] for row in sample_data]) 
+names = [row[1] for row in sorted_data]
+assert names == sorted(names)
+print('Test 1 passed :  sata sorted in alhabetical order')
+assert bubble_sort([]) == []
+print('Test 2 passed: handles empty list correctly ') 
 
 
 #time function 
@@ -297,6 +313,14 @@ def main():
             print(f"Unsorted Linear: {t1:.6f}s")
             print(f"Sorted Linear: {t2:.6f}s")
             print(f"Binary Search: {t3:.6f}s")
+
+              # validation AFTER timings
+            if not is_valid_vendor(data, name):
+               print("Vendor not found.")
+            else:
+                print("Vendor found.")
+
+            
 
             ts1, _ = time_function(bubble_sort, data.copy())
             ts2, _ = time_function(quick_sort, data.copy())
